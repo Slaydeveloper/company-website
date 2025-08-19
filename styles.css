@@ -19,13 +19,14 @@ body {
 
 /* Navigation */
 .navbar {
-    background: #ffffff;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
     padding: 20px 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid #e0e0e0;
+    backdrop-filter: blur(10px);
 }
 
 .nav-container {
@@ -40,7 +41,10 @@ body {
 .logo h1 {
     font-size: 24px;
     font-weight: 700;
-    color: #000000;
+    background: linear-gradient(135deg, #000000 0%, #404040 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: -0.02em;
 }
 
@@ -55,29 +59,47 @@ body {
     color: #1a1a1a;
     font-weight: 400;
     font-size: 16px;
-    transition: color 0.2s ease;
+    transition: all 0.3s ease;
     letter-spacing: 0.01em;
+    position: relative;
 }
 
 .nav-menu a:hover {
-    color: #ff6b35;
+    background: linear-gradient(135deg, #333333 0%, #666666 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* Hero Section */
 .hero {
-    background: #000000;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
     color: #ffffff;
     padding: 140px 0 100px;
     text-align: left;
     min-height: 100vh;
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%);
+    pointer-events: none;
 }
 
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 40px;
+    position: relative;
+    z-index: 1;
 }
 
 .hero h1 {
@@ -86,6 +108,10 @@ body {
     margin-bottom: 40px;
     line-height: 1.1;
     letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .hero p {
@@ -93,7 +119,7 @@ body {
     margin-bottom: 60px;
     font-weight: 300;
     line-height: 1.4;
-    color: #cccccc;
+    color: #b0b0b0;
     max-width: 600px;
 }
 
@@ -107,46 +133,78 @@ body {
     padding: 16px 32px;
     text-decoration: none;
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     display: inline-block;
     border: 2px solid transparent;
     font-size: 16px;
     letter-spacing: 0.01em;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn.primary {
-    background: #ff6b35;
+    background: linear-gradient(135deg, #333333 0%, #666666 100%);
     color: #ffffff;
-    border: 2px solid #ff6b35;
+    border: 2px solid #333333;
 }
 
-.btn.primary:hover {
-    background: #e55a2b;
-    border: 2px solid #e55a2b;
+.btn.primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #555555 0%, #888888 100%);
+    transition: left 0.3s ease;
+    z-index: -1;
+}
+
+.btn.primary:hover::before {
+    left: 0;
 }
 
 .btn.secondary {
     background: transparent;
     color: #ffffff;
     border: 2px solid #ffffff;
+    position: relative;
+}
+
+.btn.secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+    transition: left 0.3s ease;
+    z-index: -1;
 }
 
 .btn.secondary:hover {
-    background: #ffffff;
     color: #000000;
+}
+
+.btn.secondary:hover::before {
+    left: 0;
 }
 
 /* About Section */
 .about {
     padding: 120px 0;
-    background: #ffffff;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
 }
 
 .about h2 {
     font-size: 48px;
     margin-bottom: 40px;
     text-align: left;
-    color: #000000;
+    background: linear-gradient(135deg, #000000 0%, #333333 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 300;
     letter-spacing: -0.02em;
 }
@@ -169,21 +227,40 @@ body {
 }
 
 .value-item {
-    background: #f5f5f5;
+    background: linear-gradient(135deg, #f5f5f5 0%, #eeeeee 100%);
     padding: 40px;
-    transition: background 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.value-item:hover {
-    background: #eeeeee;
+.value-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #e8e8e8 0%, #dddddd 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.value-item:hover::before {
+    opacity: 1;
 }
 
 .value-item h3 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #000000;
+    background: linear-gradient(135deg, #000000 0%, #444444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 500;
     letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
 }
 
 .value-item p {
@@ -191,71 +268,118 @@ body {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* Focus Areas */
 .focus-areas {
     padding: 120px 0;
-    background: #1a1a1a;
+    background: linear-gradient(135deg, #1a1a1a 0%, #000000 50%, #2a2a2a 100%);
     color: #ffffff;
+    position: relative;
+}
+
+.focus-areas::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 0%, rgba(255,255,255,0.02) 50%, transparent 100%);
+    pointer-events: none;
 }
 
 .focus-areas h2 {
     font-size: 48px;
     margin-bottom: 80px;
     text-align: left;
-    color: #ffffff;
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 300;
     letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
 }
 
 .focus-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 .focus-item {
-    background: #2a2a2a;
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
     padding: 40px;
-    transition: background 0.2s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-.focus-item:hover {
-    background: #333333;
+.focus-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #333333 0%, #222222 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.focus-item:hover::before {
+    opacity: 1;
 }
 
 .focus-icon {
     font-size: 32px;
     margin-bottom: 24px;
     display: block;
+    position: relative;
+    z-index: 1;
 }
 
 .focus-item h3 {
     font-size: 24px;
     margin-bottom: 20px;
-    color: #ffffff;
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 500;
     letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
 }
 
 .focus-item p {
-    color: #cccccc;
+    color: #b0b0b0;
     line-height: 1.5;
     font-size: 16px;
+    position: relative;
+    z-index: 1;
 }
 
 /* Approach Section */
 .approach {
     padding: 120px 0;
-    background: #f5f5f5;
+    background: linear-gradient(180deg, #f5f5f5 0%, #e8e8e8 100%);
 }
 
 .approach h2 {
     font-size: 48px;
     margin-bottom: 60px;
     text-align: left;
-    color: #000000;
+    background: linear-gradient(135deg, #000000 0%, #333333 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     font-weight: 300;
     letter-spacing: -0.02em;
 }
@@ -267,7 +391,10 @@ body {
 .approach-text h3 {
     font-size: 28px;
     margin-bottom: 20px;
-    color: #000000;
+    background: linear-gradient(135deg, #000000 0%, #444444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-top: 60px;
     font-weight: 500;
     letter-spacing: -0.01em;
@@ -287,7 +414,7 @@ body {
 
 /* Footer */
 footer {
-    background: #000000;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
     color: #ffffff;
     padding: 60px 0;
     text-align: left;
